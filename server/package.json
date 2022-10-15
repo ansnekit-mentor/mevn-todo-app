@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "server": "ts-node-dev index.ts"
+    "server": "ts-node-dev index.ts",
+    "build": "tsc",
+    "start": "node dist"
   },
   "author": "ansnekit",
   "license": "ISC",
