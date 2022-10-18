@@ -1,9 +1,16 @@
 <template>
-    <li class="todo">
+    <li class="todo" :class="{ 'todo--arhived': isArhived }">
         <IconBase class="todo__icon-template" />
 
         <label class="todo__wrapper">
-            <input v-show="false" id="checkbox" class="todo__checkbox" type="checkbox" />
+            <input
+                v-show="false"
+                id="checkbox"
+                class="todo__checkbox"
+                type="checkbox"
+                :checked="done"
+                :disabled="isArhived"
+            />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -15,30 +22,64 @@
                 <use xlink:href="#todo__check" class="icon__check"></use>
                 <use xlink:href="#todo__circle" class="icon__circle"></use>
             </svg>
-            <div class="todo__text">Do a very important task Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor distinctio necessitatibus voluptatibus itaque! Fuga, eveniet accusamus ex maiores deserunt corporis?</div>
+            <div class="todo__text">
+                Do a very important task Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Dolor distinctio necessitatibus voluptatibus itaque! Fuga, eveniet accusamus ex
+                maiores deserunt corporis?
+            </div>
         </label>
 
         <div class="todo__buttons">
-            <BaseButton class="button button--circle">
-                <IconEdit class="button__icon" width="24" height="24" />
-            </BaseButton>
-            <BaseButton class="button button--circle">
-                <IconArchive class="button__icon" width="24" height="24" />
-            </BaseButton>
-            <BaseButton class="button button--circle">
-                <IconDelete class="button__icon" width="24" height="24" />
-            </BaseButton>
+            <template v-if="!isArhived">
+                <BaseButton class="button button--circle">
+                    <IconView class="button__icon base-icon" width="24" height="24" />
+                </BaseButton>
+                <BaseButton class="button button--circle">
+                    <IconArchive class="button__icon base-icon" width="24" height="24" />
+                </BaseButton>
+                <BaseButton class="button button--circle button--red">
+                    <IconDelete class="button__icon base-icon" width="24" height="24" />
+                </BaseButton>
+            </template>
+
+            <template v-else>
+                <BaseButton class="button button--circle">
+                    <IconView class="button__icon base-icon" width="24" height="24" />
+                </BaseButton>
+                <BaseButton class="button button--circle">
+                    <IconArrowUp class="button__icon base-icon" width="24" height="24" />
+                </BaseButton>
+            </template>
         </div>
     </li>
 </template>
 
 <script setup lang="ts">
 import IconBase from '@/components/icons/IconBase.vue'
-import BaseButton from './BaseButton.vue'
-import IconEdit from './icons/IconEdit.vue'
-import IconArchive from './icons/IconArchive.vue'
-import IconDelete from './icons/IconDelete.vue'
-import checkbox from '@/assets/checkbox.svg'
+import BaseButton from '@/components/BaseButton.vue'
+import IconArchive from '@/components/icons/IconArchive.vue'
+import IconDelete from '@/components/icons/IconDelete.vue'
+import IconArrowUp from '@/components/icons/IconArrowUp.vue'
+import IconView from '@/components/icons/IconView.vue'
+
+defineProps({
+    id: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type: String,
+        default: '',
+    },
+    isArhived: {
+        type: Boolean,
+        default: false,
+    },
+    done: {
+        type: Boolean,
+        default: false,
+    },
+})
 </script>
 
 <style lang="scss" scoped>
@@ -49,8 +90,13 @@ $duration: 0.8s;
     background-color: var(--color-todolist-item);
     list-style: none;
     padding: 20px 20px;
+    padding-left: 10px;
     margin-bottom: 20px;
     border-radius: 8px;
+
+    &--arhived {
+        background-color: var(--color-todolist-item-arhived);
+    }
 
     &:last-child {
         margin-bottom: 0;
@@ -65,13 +111,13 @@ $duration: 0.8s;
 
     &__wrapper {
         display: flex;
-        width: 80%;
+        width: 74%;
         flex-grow: 1;
         align-items: center;
         position: relative;
         cursor: pointer;
 
-        padding-left: 80px;
+        padding-left: 70px;
     }
 
     &__text {
@@ -184,24 +230,6 @@ $duration: 0.8s;
         align-items: center;
         gap: 10px;
         margin-left: 20px;
-    }
-}
-
-.button {
-    // margin-left: 10px;
-
-    // &:last-child {
-    //     margin-right: 0;
-    // }
-
-    &:hover {
-        .button__icon {
-            fill: bisque;
-        }
-    }
-
-    &__icon {
-        fill: currentColor;
     }
 }
 </style>

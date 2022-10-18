@@ -1,0 +1,72 @@
+@import './base.css';
+
+#app {
+    display: flex;
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    outline: 1px solid #fff;
+
+    font-weight: normal;
+}
+
+.base-icon {
+    width: 24px;
+    height: 24px;
+
+    fill: currentColor;
+}
+
+a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+
+    border-radius: 8px;
+    background-color: var(--color-button-bg);
+    outline: none;
+    color: var(--color-text);
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+
+    transition: all 0.3s ease-out;
+
+    &:hover {
+        background-color: var(--color-button-hover-bg);
+    }
+
+    &--circle {
+        background-color: transparent;
+        padding: 0;
+        border-radius: 100%;
+        transition: all 0.3s ease-out;
+
+        &:hover {
+            background-color: transparent;
+            color: var(--color-button-hover);
+        }
+    }
+
+    &--red {
+        color: var(--color-button-red);
+    }
+}
+
+@media (hover: hover) {
+    a:hover {
+        color: var(--color-text-hover);
+    }
+}
+
+@media (min-width: 1024px) {
+}

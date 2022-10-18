@@ -1,33 +1,23 @@
 <template>
     <button class="button">
-        <slot />
+        <div v-if="$slots.icon" class="button__icon">
+            <slot name="icon" />
+        </div>
+
+        <div v-if="$slots.default">
+            <slot />
+        </div>
     </button>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-
-    border-radius: 8px;
-    background-color: #222;
-    outline: none;
-    color: #fff;
-    box-shadow: none;
-    border: none;
-    cursor: pointer;
-
-    &--circle {
-        background-color: transparent;
-        padding: 0;
-        border-radius: 100%;
-        transition: all 0.3s ease-out;
+    &__icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
     }
 }
 </style>
