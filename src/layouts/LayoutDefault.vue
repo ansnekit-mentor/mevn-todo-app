@@ -19,7 +19,7 @@ import TheHeader from '@/components/TheHeader.vue'
 }
 
 .main {
-    margin-top: 100px;
+    margin-top: 70px;
     width: 100%;
 }
 </style>

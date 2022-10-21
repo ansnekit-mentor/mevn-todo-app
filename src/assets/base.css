@@ -2,6 +2,7 @@
 :root {
   --color-body-bg: #110039;
   --color-text: #fff;
+  --color-text-black: #000;
   --color-text-hover: #e7cdff;
   --color-todolist-item: #010004;
   --color-todolist-item-arhived: #9e98ab;
@@ -10,6 +11,7 @@
   --color-button-hover: #9650ff;
   --color-button-hover-bg: #6e15b5;
   --color-button-red: #ca2020;
+  --color-button-active: #fff;
 }
 
 

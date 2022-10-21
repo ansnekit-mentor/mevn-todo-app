@@ -1,6 +1,6 @@
 <template>
     <button class="button">
-        <div v-if="$slots.icon" class="button__icon">
+        <div v-if="$slots.icon" class="button__icon base-icon">
             <slot name="icon" />
         </div>
 
@@ -12,12 +12,4 @@
 
 <script setup lang="ts"></script>
 
-<style lang="scss" scoped>
-.button {
-    &__icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 10px;
-    }
-}
-</style>
+<style lang="scss" scoped></style>
