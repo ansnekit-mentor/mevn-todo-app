@@ -36,7 +36,7 @@ defineProps({
 $duration: 0.8s;
 
 .todo-list {
-    max-width: 600px;
+    max-width: 700px;
 
     margin: 0;
     padding: 0;
@@ -45,9 +45,6 @@ $duration: 0.8s;
 
     font-size: 20px;
     list-style: none;
-
-    &--arhived {
-    }
 
     &__button {
         margin-bottom: 20px;

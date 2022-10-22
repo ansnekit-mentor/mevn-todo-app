@@ -1,5 +1,5 @@
 <template>
-    <li class="todo" :class="{ 'todo--arhived': isArhived }">
+    <li class="todo" :class="{ 'todo--arhived': isArhived, 'todo--done': done }">
         <IconBase class="todo__icon-template" />
 
         <label class="todo__wrapper">
@@ -10,6 +10,7 @@
                 type="checkbox"
                 :checked="done"
                 :disabled="isArhived"
+                @change="$emit('changeStatus', id, !done)"
             />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,6 +81,8 @@ defineProps({
         default: false,
     },
 })
+
+defineEmits(['changeStatus'])
 </script>
 
 <style lang="scss" scoped>
@@ -87,15 +90,17 @@ $duration: 0.8s;
 .todo {
     display: flex;
     flex-wrap: nowrap;
-    background-color: var(--color-todolist-item);
+    background-color: var(--color-theme-black);
+    color: var(--color-theme-white);
     list-style: none;
-    padding: 20px 20px;
+    padding: 30px 20px;
     padding-left: 10px;
     margin-bottom: 20px;
     border-radius: 8px;
 
     &--arhived {
-        background-color: var(--color-todolist-item-arhived);
+        background-color: var(--color-theme-yellow);
+        color: var(--color-theme-black);
     }
 
     &:last-child {
@@ -117,20 +122,14 @@ $duration: 0.8s;
         position: relative;
         cursor: pointer;
 
-        padding-left: 70px;
+        padding-left: 90px;
     }
 
     &__text {
-        color: saturate(#ffe2e2, 100%);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         transition: all calc($duration / 2) linear calc($duration / 2);
-
-        &:hover {
-            color: #ffffff;
-            transition: all 0.2s ease;
-        }
     }
 
     .icon {
@@ -204,7 +203,6 @@ $duration: 0.8s;
     &__checkbox:checked {
         ~ .todo__text {
             transition-delay: 0s;
-            color: darken(#eaffdb, 10%);
             opacity: 0.6;
         }
 

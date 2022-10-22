@@ -1,17 +1,11 @@
 
 :root {
-  --color-body-bg: #110039;
-  --color-text: #fff;
-  --color-text-black: #000;
-  --color-text-hover: #e7cdff;
-  --color-todolist-item: #010004;
-  --color-todolist-item-arhived: #9e98ab;
-  --color-header: #833cee;
-  --color-button-bg: #232323;
-  --color-button-hover: #9650ff;
-  --color-button-hover-bg: #6e15b5;
-  --color-button-red: #ca2020;
-  --color-button-active: #fff;
+  --color-theme-dark: #1A2238;
+  --color-theme-white: #fff;
+  --color-theme-black: #000;
+  --color-theme-blue: #9DAAF2;
+  --color-theme-orange: #FF6A3D;
+  --color-theme-yellow: #F4DB7D;
 }
 
 
@@ -43,8 +37,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
-  color: var(--color-text);
-  background-color: var(--color-body-bg);
+  color: var(--color-theme-white);
+  background-color: var(--color-theme-dark);
 
   transition: color 0.5s, background-color 0.5s;
 }

@@ -1,10 +1,7 @@
 <template>
     <div class="todo">
         <div class="todo__head">
-            <div class="todo__head-wrap flex-align-center">
-                <IconList class="todo__head-icon base-icon" />
-                <h1 class="todo__title">To do list</h1>
-            </div>
+            <BasePageTitle class="todo__title">Список задач</BasePageTitle>
 
             <div class="todo__status-buttons flex-align-center">
                 <BaseButton
@@ -20,7 +17,7 @@
 
         <RouterLink class="todo__link button" to="/create-task">
             <IconPlus class="todo__link-icon base-icon" />
-            Add new task
+            Добавить
         </RouterLink>
         <TodoList class="todo__list" />
     </div>
@@ -29,16 +26,16 @@
 <script setup lang="ts">
 import TodoList from '@/components/TodoList.vue'
 import IconPlus from '@/components/icons/IconPlus.vue'
-import IconList from '../components/icons/IconList.vue'
 import BaseButton from '../components/BaseButton.vue'
 import { ref } from 'vue'
+import BasePageTitle from '../components/BasePageTitle.vue'
 
 type Statuses = 'all' | 'done' | 'undone'
 const currentFilter = ref<Statuses>('all')
 const statuses = [
-    { status: 'all', text: 'All' },
-    { status: 'done', text: 'Done' },
-    { status: 'undone', text: 'Undone' },
+    { status: 'all', text: 'Все' },
+    { status: 'done', text: 'Выполненные' },
+    { status: 'undone', text: 'Невыполненные' },
 ]
 
 const changeFilter = (status: Statuses) => (currentFilter.value = status)
@@ -55,28 +52,19 @@ const changeFilter = (status: Statuses) => (currentFilter.value = status)
         justify-content: space-between;
 
         margin-bottom: 100px;
-
-        &-icon {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-        }
     }
 
-    &__title {
-        font-size: 26px;
-        line-height: 32px;
-        text-transform: uppercase;
-    }
+    &__title {}
 
     &__status-buttons {}
 
     &__status-button {
         background-color: transparent;
 
+
         &--active {
-            background-color: var(--color-button-active);
-            color: var(--color-text-black);
+            background-color: var(--color-theme-orange);
+            color: var(--color-theme-white);
         }
     }
 

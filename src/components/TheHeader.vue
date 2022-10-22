@@ -32,7 +32,7 @@
 
     padding: 0 20px;
 
-    background-color: var(--color-header);
+    background-color: var(--color-theme-orange);
 
     &__wrap {
         height: inherit;
@@ -44,9 +44,16 @@
         align-items: center;
         padding: 10px;
         height: inherit;
+        color: var(--color-theme-white);
+        transition: all 0.4s ease-in;
+
+        &:hover {
+            color: var(--color-theme-black);
+            background-color: var(--color-theme-blue);
+        }
 
         &-exact-active {
-            background-color: #000;
+            background-color: var(--color-theme-dark);
         }
     }
 }

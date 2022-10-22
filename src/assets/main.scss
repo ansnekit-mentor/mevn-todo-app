@@ -19,9 +19,13 @@
 }
 
 a {
-    color: var(--color-text);
+    color: var(--color-theme-white);
     text-decoration: none;
     transition: 0.4s;
+
+    &:hover {
+        color: var(--color-theme-black);
+    }
 }
 
 .button {
@@ -31,9 +35,9 @@ a {
     padding: 10px 20px;
 
     border-radius: 8px;
-    background-color: var(--color-button-bg);
+    background-color: var(--color-theme-orange);
     outline: none;
-    color: var(--color-text);
+    color: var(--color-theme-white);
     box-shadow: none;
     border: none;
     cursor: pointer;
@@ -42,35 +46,30 @@ a {
     transition: all 0.3s ease-out;
 
     &:hover {
-        background-color: var(--color-button-hover-bg);
+        background-color: var(--color-theme-blue);
     }
 
     &--circle {
         background-color: transparent;
+        color: var(--color-theme-white);
         padding: 0;
         border-radius: 100%;
         transition: all 0.3s ease-out;
 
         &:hover {
             background-color: transparent;
-            color: var(--color-button-hover);
+            color: var(--color-theme-blue);
         }
     }
 
     &--red {
-        color: var(--color-button-red);
+        color: var(--color-theme-orange);
     }
 }
 
 .flex-align-center {
     display: flex;
     align-items: center;
-}
-
-@media (hover: hover) {
-    a:hover {
-        color: var(--color-text-hover);
-    }
 }
 
 @media (min-width: 1024px) {
