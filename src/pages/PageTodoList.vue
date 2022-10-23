@@ -15,20 +15,21 @@
             </div>
         </div>
 
-        <RouterLink class="todo__link button" to="/create-task">
+        <RouterLink class="todo__link button" to="/create">
             <IconPlus class="todo__link-icon base-icon" />
             Добавить
         </RouterLink>
+
         <TodoList class="todo__list" />
     </div>
 </template>
 
 <script setup lang="ts">
-import TodoList from '@/components/TodoList.vue'
+import TodoList from '@/components/Todo/TodoList.vue'
 import IconPlus from '@/components/icons/IconPlus.vue'
-import BaseButton from '../components/BaseButton.vue'
+import BaseButton from '@/components/base/BaseButton.vue'
 import { ref } from 'vue'
-import BasePageTitle from '../components/BasePageTitle.vue'
+import BasePageTitle from '@/components/base/BasePageTitle.vue'
 
 type Statuses = 'all' | 'done' | 'undone'
 const currentFilter = ref<Statuses>('all')

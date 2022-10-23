@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import TodoItem from '@/components/TodoItem.vue'
+import TodoItem from '@/components/Todo/TodoItem.vue'
 
 defineProps({
     list: {

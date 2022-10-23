@@ -57,7 +57,7 @@
 
 <script setup lang="ts">
 import IconBase from '@/components/icons/IconBase.vue'
-import BaseButton from '@/components/BaseButton.vue'
+import BaseButton from '@/components/base/BaseButton.vue'
 import IconArchive from '@/components/icons/IconArchive.vue'
 import IconDelete from '@/components/icons/IconDelete.vue'
 import IconArrowUp from '@/components/icons/IconArrowUp.vue'

@@ -65,6 +65,10 @@ a {
     &--red {
         color: var(--color-theme-orange);
     }
+
+    &--cancel {
+        background-color: var(--color-theme-black);
+    }
 }
 
 .flex-align-center {

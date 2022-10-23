@@ -17,6 +17,10 @@ import IconBack from '@/components/icons/IconBack.vue'
     font-size: 18px;
     margin-bottom: 30px;
 
+    &:hover {
+        color: var(--color-theme-orange);
+    }
+
     &__icon {
         margin-right: 10px;
     }

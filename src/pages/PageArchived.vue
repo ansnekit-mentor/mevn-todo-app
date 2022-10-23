@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import TodoList from '@/components/TodoList.vue'
-import BasePageTitle from '../components/BasePageTitle.vue'
+import TodoList from '@/components/Todo/TodoList.vue'
+import BasePageTitle from '@/components/base/BasePageTitle.vue'
 </script>
 
 <style lang="scss" scoped>
