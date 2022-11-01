@@ -20,7 +20,7 @@
             Добавить
         </RouterLink>
 
-        <TodoList class="todo__list" />
+        <TodoList class="todo__list" :list="tasks" />
     </div>
 </template>
 
@@ -28,8 +28,10 @@
 import TodoList from '@/components/Todo/TodoList.vue'
 import IconPlus from '@/components/icons/IconPlus.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import BasePageTitle from '@/components/base/BasePageTitle.vue'
+import { getTasks } from '@/service/TaskService'
+import type { ITask } from '@/entities/Task'
 
 type Statuses = 'all' | 'done' | 'undone'
 const currentFilter = ref<Statuses>('all')
@@ -38,8 +40,13 @@ const statuses = [
     { status: 'done', text: 'Выполненные' },
     { status: 'undone', text: 'Невыполненные' },
 ]
+const tasks = ref<ITask[]>([])
 
 const changeFilter = (status: Statuses) => (currentFilter.value = status)
+
+onMounted(async () => {
+    tasks.value = await getTasks()
+})
 </script>
 
 <style lang="scss" scoped>

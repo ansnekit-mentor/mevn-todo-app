@@ -16,6 +16,10 @@ const taskSchema = new Schema(
             type: Boolean,
             default: false,
         },
+        isArchived: {
+            type: Boolean,
+            default: false,
+        },
     },
     { versionKey: false },
 )

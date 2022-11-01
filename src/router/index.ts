@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import PageTodoList from '@/pages/PageTodoList.vue'
+import PageTasks from '@/pages/PageTasks.vue'
 import PageArchived from '@/pages/PageArchived.vue'
 import PageCreateTask from '@/pages/PageCreateTask.vue'
 import PageTaskMoreInfo from '@/pages/PageTaskMoreInfo.vue'
@@ -9,8 +9,8 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            name: 'todoList',
-            component: PageTodoList,
+            name: 'tasks',
+            component: PageTasks,
         },
         {
             path: '/archived',

@@ -7,13 +7,13 @@
             :is-arhived="isArhived"
             :title="item.title"
         /> -->
-        <TodoItem id="0" title="Asdf" :is-arhived="isArhived" :done="true" />
+        <TodoItem id="0" title="1 Asdf" :is-arhived="false" :done="true" />
         <TodoItem
             id="1"
-            title="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, officiis?"
-            :is-arhived="isArhived"
+            title=" 2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, officiis?"
+            :is-arhived="false"
         />
-        <TodoItem id="2" title="KLvb waojv asd wijhlkj slajlfgj" :is-arhived="isArhived" />
+        <TodoItem id="2" title="3 KLvb waojv asd wijhlkj slajlfgj" :is-arhived="false" />
     </ul>
 </template>
 
@@ -24,10 +24,6 @@ defineProps({
     list: {
         type: Array,
         default: () => [],
-    },
-    isArhived: {
-        type: Boolean,
-        default: false,
     },
 })
 </script>
