@@ -1,36 +1,30 @@
 <template>
     <section class="todo-more">
         <h1 class="todo-more__title">
-            asdf asdfa 123 Lorem, ipsum dolor sit amet conse ct et u r adipis icing elit. Nobis
-            atque corporis cum recusandae fugit necessitatibus reprehenderit nostrum aliquid
-            explicabo unde.
+            {{ task.title }}
         </h1>
         <p class="todo-more__description">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam, libero Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Eligendi totam nam doloribus praesentium
-            distinctio amet reprehenderit numquam sunt minus aperiam.
+            {{ task.description }}
         </p>
-        <BaseButton class="todo-more__status-btn button">Невыполнено</BaseButton>
+        <BaseButton class="todo-more__status-btn button" @click="$emit('changeStatus', task.id)">{{
+            task.done === true ? 'Выполнено' : 'Невыполнено'
+        }}</BaseButton>
     </section>
 </template>
 
 <script setup lang="ts">
 import BaseButton from '@/components/base/BaseButton.vue'
+import type { ITask } from '@/entities/Task'
+import type { PropType } from 'vue'
 
 defineProps({
-    title: {
-        type: String,
-        default: '',
-    },
-    description: {
-        type: String,
-        default: '',
-    },
-    isDone: {
-        type: Boolean,
-        default: false,
+    task: {
+        type: Object as PropType<ITask>,
+        default: () => ({}),
     },
 })
+
+defineEmits(['changeStatus'])
 </script>
 
 <style lang="scss" scoped>

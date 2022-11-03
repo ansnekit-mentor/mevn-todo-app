@@ -1,7 +1,14 @@
 <template>
     <div class="base-input">
         <label :for="id" class="base-input__label">{{ label }}</label>
-        <input :id="id" type="text" class="base-input__input" />
+        <input
+            :id="id"
+            type="text"
+            class="base-input__input"
+            v-bind="$attrs"
+            :value="modelValue"
+            @input="onInput"
+        />
     </div>
 </template>
 
@@ -16,7 +23,20 @@ defineProps({
         type: String,
         default: '',
     },
+    modelValue: {
+        type: String,
+        default: '',
+    },
 })
+
+const emit = defineEmits(['update:modelValue'])
+
+const onInput = (evt: Event) => {
+    const target = evt.target as HTMLInputElement
+    if (target) {
+        emit('update:modelValue', target.value)
+    }
+}
 </script>
 
 <style lang="scss" scoped>

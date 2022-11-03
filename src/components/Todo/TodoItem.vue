@@ -10,7 +10,7 @@
                 type="checkbox"
                 :checked="done"
                 :disabled="isArhived"
-                @change="$emit('changeStatus', id, !done)"
+                @change="$emit('changeStatus', id)"
             />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -24,33 +24,36 @@
                 <use xlink:href="#todo__circle" class="icon__circle"></use>
             </svg>
             <div class="todo__text">
-                Do a very important task Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Dolor distinctio necessitatibus voluptatibus itaque! Fuga, eveniet accusamus ex
-                maiores deserunt corporis?
+                {{ title }}
             </div>
         </label>
 
         <div class="todo__buttons">
-            <template v-if="!isArhived">
-                <BaseButton class="button button--circle">
-                    <IconView class="button__icon base-icon" width="24" height="24" />
-                </BaseButton>
-                <BaseButton class="button button--circle">
-                    <IconArchive class="button__icon base-icon" width="24" height="24" />
-                </BaseButton>
-                <BaseButton class="button button--circle button--red">
-                    <IconDelete class="button__icon base-icon" width="24" height="24" />
-                </BaseButton>
-            </template>
+            <RouterLink :to="`/task/${id}`" class="button button--circle">
+                <IconView class="button__icon base-icon" width="24" height="24" />
+            </RouterLink>
+            <BaseButton
+                v-if="!isArhived"
+                class="button button--circle"
+                @click="$emit('archivedTask', id)"
+            >
+                <IconArchive class="button__icon base-icon" width="24" height="24" />
+            </BaseButton>
+            <BaseButton
+                v-if="!isArhived"
+                class="button button--circle button--red"
+                @click="$emit('deleteTask', id)"
+            >
+                <IconDelete class="button__icon base-icon" width="24" height="24" />
+            </BaseButton>
 
-            <template v-else>
-                <BaseButton class="button button--circle">
-                    <IconView class="button__icon base-icon" width="24" height="24" />
-                </BaseButton>
-                <BaseButton class="button button--circle">
-                    <IconArrowUp class="button__icon base-icon" width="24" height="24" />
-                </BaseButton>
-            </template>
+            <BaseButton
+                v-if="isArhived"
+                class="button button--circle"
+                @click="$emit('unahchivedTask', id)"
+            >
+                <IconArrowUp class="button__icon base-icon" width="24" height="24" />
+            </BaseButton>
         </div>
     </li>
 </template>
@@ -58,10 +61,10 @@
 <script setup lang="ts">
 import IconBase from '@/components/icons/IconBase.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
-import IconArchive from '@/components/icons/IconArchive.vue'
 import IconDelete from '@/components/icons/IconDelete.vue'
 import IconArrowUp from '@/components/icons/IconArrowUp.vue'
 import IconView from '@/components/icons/IconView.vue'
+import IconArchive from '@/components/icons/IconArchive.vue'
 
 defineProps({
     id: {
@@ -82,12 +85,13 @@ defineProps({
     },
 })
 
-defineEmits(['changeStatus'])
+defineEmits(['changeStatus', 'deleteTask', 'archivedTask', 'unahchivedTask'])
 </script>
 
 <style lang="scss" scoped>
 $duration: 0.8s;
 .todo {
+    width: 100%;
     display: flex;
     flex-wrap: nowrap;
     background-color: var(--color-theme-black);

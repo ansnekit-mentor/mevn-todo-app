@@ -2,18 +2,17 @@ export type Rename<T, K extends keyof T, N extends string> = Pick<T, Exclude<key
     [P in N]: T[K]
 }
 
-export interface IBTask {
-    _id: string
+export interface IBaseTask {
     title: string
     description: string
     done: boolean
-    isArchived: boolean
+    archived: boolean
 }
 
-export interface ITask {
+export interface IBTask extends IBaseTask {
+    _id: string
+}
+
+export interface ITask extends IBaseTask {
     id: string
-    title: string
-    description: string
-    done: boolean
-    isArchived: boolean
 }

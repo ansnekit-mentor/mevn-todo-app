@@ -2,7 +2,15 @@ import { computed } from 'vue';
 <template>
     <div class="base-textarea">
         <label :for="id" class="base-textarea__label">{{ label }}</label>
-        <textarea :id="id" class="base-textarea__textarea" rows="9" maxlength="500"></textarea>
+        <textarea
+            :id="id"
+            class="base-textarea__textarea"
+            rows="9"
+            maxlength="500"
+            v-bind="$attrs"
+            :value="modelValue"
+            @input="onTextarea"
+        ></textarea>
     </div>
 </template>
 
@@ -17,7 +25,19 @@ defineProps({
         type: String,
         default: '',
     },
+    modelValue: {
+        type: String,
+        default: '',
+    },
 })
+const emit = defineEmits(['update:modelValue'])
+
+const onTextarea = (evt: Event) => {
+    const target = evt.target as HTMLInputElement
+    if (target) {
+        emit('update:modelValue', target.value)
+    }
+}
 </script>
 
 <style lang="scss" scoped>

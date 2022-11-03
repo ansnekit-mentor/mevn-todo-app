@@ -5,22 +5,28 @@
 
             <div class="todo__status-buttons flex-align-center">
                 <BaseButton
-                    v-for="(button, idx) in statuses"
+                    v-for="(button, idx) in btnStatuses"
                     :key="idx"
                     class="todo__status-button"
                     :class="{ 'todo__status-button--active': button.status === currentFilter }"
-                    @click="changeFilter(button.status as Statuses)"
+                    @click="changeFilter(button.status)"
                     >{{ button.text }}</BaseButton
                 >
             </div>
         </div>
 
-        <RouterLink class="todo__link button" to="/create">
+        <RouterLink class="todo__link button" :to="{ name: 'new' }">
             <IconPlus class="todo__link-icon base-icon" />
             Добавить
         </RouterLink>
 
-        <TodoList class="todo__list" :list="tasks" />
+        <TodoList
+            class="todo__list"
+            :list="notArchivedTask"
+            @change-status="onChangeStatus($event, 'done')"
+            @archived-task="onChangeStatus($event, 'archived')"
+            @delete-task="onDeleteTask"
+        />
     </div>
 </template>
 
@@ -28,29 +34,22 @@
 import TodoList from '@/components/Todo/TodoList.vue'
 import IconPlus from '@/components/icons/IconPlus.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import BasePageTitle from '@/components/base/BasePageTitle.vue'
-import { getTasks } from '@/service/TaskService'
-import type { ITask } from '@/entities/Task'
+import useTasks from '@/composables/useTasks'
+import useTasksFilter from '@/composables/useTasksFilter'
 
-type Statuses = 'all' | 'done' | 'undone'
-const currentFilter = ref<Statuses>('all')
-const statuses = [
-    { status: 'all', text: 'Все' },
-    { status: 'done', text: 'Выполненные' },
-    { status: 'undone', text: 'Невыполненные' },
-]
-const tasks = ref<ITask[]>([])
-
-const changeFilter = (status: Statuses) => (currentFilter.value = status)
+const { notArchivedTask, fetchTasks, onChangeStatus, onDeleteTask } = useTasks()
+const { btnStatuses, currentFilter, changeFilter } = useTasksFilter()
 
 onMounted(async () => {
-    tasks.value = await getTasks()
+    await fetchTasks()
 })
 </script>
 
 <style lang="scss" scoped>
 .todo {
+    width: 700px;
     display: flex;
     flex-direction: column;
 
@@ -62,13 +61,14 @@ onMounted(async () => {
         margin-bottom: 100px;
     }
 
-    &__title {}
+    &__title {
+    }
 
-    &__status-buttons {}
+    &__status-buttons {
+    }
 
     &__status-button {
         background-color: transparent;
-
 
         &--active {
             background-color: var(--color-theme-orange);

@@ -1,38 +1,39 @@
 <template>
     <ul class="todo-list">
-        <!-- <TodoItem
-            v-for="(item, idx) of list"
-            :id="idx"
-            :key="idx"
-            :is-arhived="isArhived"
-            :title="item.title"
-        /> -->
-        <TodoItem id="0" title="1 Asdf" :is-arhived="false" :done="true" />
         <TodoItem
-            id="1"
-            title=" 2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, officiis?"
-            :is-arhived="false"
+            v-for="item of list"
+            :id="item.id"
+            :key="item.id"
+            :is-arhived="item.isArchived"
+            :title="item.title"
+            :done="item.done"
+            @change-status="$emit('changeStatus', $event)"
+            @archived-task="$emit('archivedTask', $event)"
+            @delete-task="$emit('deleteTask', $event)"
+            @unahchived-task="$emit('unahchivedTask', $event)"
         />
-        <TodoItem id="2" title="3 KLvb waojv asd wijhlkj slajlfgj" :is-arhived="false" />
     </ul>
 </template>
 
 <script setup lang="ts">
 import TodoItem from '@/components/Todo/TodoItem.vue'
+import type { ITask } from '@/entities/Task'
+import type { PropType } from 'vue'
 
 defineProps({
     list: {
-        type: Array,
+        type: Array as PropType<ITask[]>,
         default: () => [],
     },
 })
+defineEmits(['changeStatus', 'deleteTask', 'archivedTask', 'unahchivedTask'])
 </script>
 
 <style lang="scss" scoped>
 $duration: 0.8s;
 
 .todo-list {
-    max-width: 700px;
+    width: 100%;
 
     margin: 0;
     padding: 0;
