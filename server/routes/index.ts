@@ -1,16 +1,16 @@
 import { Request, Response, Router } from 'express'
-import Task from '../models/Task'
+import TaskModel from '../models/Task'
 const router = Router()
 
 router.get('/tasks', async (req: Request, res: Response) => {
-    const tasks = await Task.find()
+    const tasks = await TaskModel.find()
 
     res.json(tasks)
 })
 router.post('/tasks', async (req: Request, res: Response) => {
     const { title, description, done, archived } = req.body
 
-    const task = new Task({ title, description, done, archived })
+    const task = new TaskModel({ title, description, done, archived })
 
     await task.save()
 
@@ -18,7 +18,7 @@ router.post('/tasks', async (req: Request, res: Response) => {
 })
 router.get('/tasks/:id', async (req: Request, res: Response) => {
     try {
-        const task = await Task.findById(req.params.id)
+        const task = await TaskModel.findById(req.params.id)
 
         if (!task) {
             res.status(404).json({ message: 'task not found' })
@@ -30,7 +30,7 @@ router.get('/tasks/:id', async (req: Request, res: Response) => {
 })
 router.delete('/tasks/:id', async (req: Request, res: Response) => {
     try {
-        const task = await Task.findByIdAndDelete(req.params.id)
+        const task = await TaskModel.findByIdAndDelete(req.params.id)
 
         if (!task) {
             res.status(404).json({ message: 'task not found' })
@@ -43,7 +43,7 @@ router.delete('/tasks/:id', async (req: Request, res: Response) => {
 })
 router.put('/tasks/:id', async (req: Request, res: Response) => {
     try {
-        const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        const updatedTask = await TaskModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
 
         if (!updatedTask) {
             res.status(404).json({ message: 'task not found' })

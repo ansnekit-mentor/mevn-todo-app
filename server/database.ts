@@ -1,7 +1,7 @@
 import { connect } from 'mongoose'
 
 const url =
-    'mongodb+srv://admin:LatYr27C9zFbErUEmsc5@cluster0.n2silvs.mongodb.net/?retryWrites=true&w=majority'
+    'mongodb+srv://admin:LatYr27C9zFbErUEmsc5@cluster0.n2silvs.mongodb.net/todo?retryWrites=true&w=majority'
 export const startConnection = async () => {
     try {
         await connect(url)

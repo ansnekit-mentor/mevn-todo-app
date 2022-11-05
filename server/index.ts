@@ -1,6 +1,8 @@
 import app from './app'
 import { startConnection } from './database'
 
+const port = process.env.PORT ?? 3000
+
 startConnection()
-app.listen(3000)
-console.log('server runing and listening port 3000')
+app.listen(port)
+console.log('server runing and listening port' + port)
