@@ -1,4 +1,4 @@
-import { Request, Response, Router, NextFunction } from 'express'
+import { Request, Response, NextFunction } from 'express'
 import { validationResult } from 'express-validator'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'

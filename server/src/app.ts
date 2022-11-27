@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
-import taskRoutes from './routes/'
+import taskRoutes from './routes'
 import authRoutes from './routes/auth'
 
 dotenv.config()
