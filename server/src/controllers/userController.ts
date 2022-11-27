@@ -1,5 +1,4 @@
-import { Request, Response, NextFunction } from 'express'
-import { validationResult } from 'express-validator'
+import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import UserModel from '../models/User'
@@ -40,14 +39,8 @@ export const login = async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Не удалось авторизоваться' })
     }
 }
-export const register = async (req: Request, res: Response, next: NextFunction) => {
+export const register = async (req: Request, res: Response) => {
     try {
-        const errors = validationResult(req)
-
-        if (!errors.isEmpty()) {
-            return res.status(400).json(errors.array())
-        }
-
         const pass = req.body.password
         const salt = await bcrypt.genSalt(10)
         const passwordHash = await bcrypt.hash(pass, salt)

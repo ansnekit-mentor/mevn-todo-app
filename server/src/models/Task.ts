@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose'
+import mongoose, { model, Schema } from 'mongoose'
 
 const taskSchema = new Schema(
     {
@@ -20,6 +20,11 @@ const taskSchema = new Schema(
         archived: {
             type: Boolean,
             default: false,
+            required: true,
+        },
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
             required: true,
         },
     },
